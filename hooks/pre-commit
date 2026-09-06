@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+# Refuse to commit internal data.
+#
+# The I-580 inputs are vehicle-level toll transactions; everything derived from
+# them, including model checkpoints, carries the same restriction. .gitignore
+# already covers the normal case — this catches the ones that slip past it,
+# such as a file added with `git add -f` or moved in from elsewhere.
+#
+# outputs/ is deliberately not blocked: the figures there are aggregated.
+set -euo pipefail
+
+blocked=$(
+    git diff --cached --name-only --diff-filter=A |
+        grep -E '^(data|models)/|\.(csv|xlsx|xls|parquet|pkl|pth|pt|h5)$' |
+        grep -v '^data/README\.md$' ||
+        true
+)
+
+if [ -n "$blocked" ]; then
+    echo "pre-commit: refusing to commit files that look like internal data:" >&2
+    echo "$blocked" | sed 's/^/  /' >&2
+    cat >&2 <<'EOF'
+
+These inputs cannot be published. If this is a false positive — an example
+fixture or a genuinely public file — commit it with:
+
+    git commit --no-verify
+
+EOF
+    exit 1
+fi

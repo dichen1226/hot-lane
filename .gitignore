@@ -1,0 +1,38 @@
+# Data ---------------------------------------------------------------------- #
+# The inputs are internal: toll transactions are vehicle-level records, and
+# every derived table and model checkpoint inherits that restriction.
+# Ignore the whole tree; only the layout documentation is tracked.
+/data/*
+!/data/README.md
+/models/
+
+# Figures are aggregated and safe to publish, so outputs/ is tracked.
+# Anything trip-level plotted there would not be — see README, "Data handling".
+
+# Belt and braces: no data-shaped file anywhere in the repo.
+*.csv
+*.xlsx
+*.xls
+*.parquet
+*.pkl
+*.pth
+*.pt
+*.h5
+
+# Python --------------------------------------------------------------------- #
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+
+# Editors / OS --------------------------------------------------------------- #
+.idea/
+.vscode/
+.DS_Store
+.spyproject/
