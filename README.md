@@ -1,4 +1,4 @@
-# HOT lane modeling for I-580, CA
+# Traffic Flow and Speed Prediction for I-580 HOT Lanes
 
 Data pipeline, exploratory analysis and LSTM speed prediction for the I-580
 express (HOT) lanes, October 2018, westbound.
