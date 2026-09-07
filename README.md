@@ -90,20 +90,27 @@ python scripts/22_plot_predictions.py --day 1
 python scripts/23_plot_speed_difference.py --scenario data/processed/some_scenario.csv
 ```
 
-### Report figures
+### Script reference
 
-Figures 5–14 of the report
-([eScholarship UC item 71d0h6hz](https://escholarship.org/uc/item/71d0h6hz))
-are committed under `outputs/figures/report/`, and `scripts/30` rebuilds them
-from this code into `outputs/figures/report_regenerated/`:
+The numbered files in `scripts/` are command-line entry points for the data
+pipeline, exploratory analysis, modeling, and figure generation:
 
-```bash
-python scripts/30_report_figures.py
-python scripts/30_report_figures.py --with-training   # adds figure 9
-```
-
-[`outputs/README.md`](outputs/README.md) maps each figure number to the code
-that draws it and records what does and does not reproduce exactly.
+| Script | Purpose |
+| --- | --- |
+| `01_extract_trip_od.py` | Collapse raw gantry transactions into one origin–destination record per trip. |
+| `02_build_od_flows.py` | Aggregate trip records into 15-minute gantry entry and exit counts. |
+| `03_build_month_panel.py` | Join flows, toll rates, and detector measurements into a month-long panel. |
+| `04_build_model_table.py` | Merge vehicle classes and create the analysis-ready modeling table. |
+| `05_build_trip_travel_times.py` | Calculate trip travel times and tolls paid for exploratory analysis. |
+| `10_plot_correlations.py` | Plot correlations among gantries, lanes, tolls, demand, and travel time. |
+| `11_plot_speed_heatmaps.py` | Create daily and month-average time–space speed heatmaps. |
+| `12_plot_demand_profiles.py` | Plot daily and diurnal toll-rate and SOV-demand profiles. |
+| `13_fundamental_diagram.py` | Estimate and plot density, free-flow speed, and backward wave speed. |
+| `20_train_lstm.py` | Train separate LSTM speed predictors for the HOT and GP lanes. |
+| `21_predict_lstm.py` | Apply the trained models across the panel to generate speed predictions. |
+| `22_plot_predictions.py` | Compare predicted and observed speeds by gantry and lane. |
+| `23_plot_speed_difference.py` | Compare average HOT and GP speeds between two scenarios. |
+| `30_report_figures.py` | Regenerate the project summary figures under `outputs/figures/report_regenerated/`. |
 
 ## How the panel is built
 
