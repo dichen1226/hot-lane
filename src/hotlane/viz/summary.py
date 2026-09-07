@@ -1,9 +1,4 @@
-"""Figure layouts specific to the project report.
-
-The figures published in the report are composites — grids over hours or over
-gantries — that the exploratory scripts produced one panel at a time and were
-then assembled by hand. These helpers build the composites directly.
-"""
+"""Composite figure layouts for summarizing the project results."""
 from __future__ import annotations
 
 from pathlib import Path
@@ -75,8 +70,7 @@ def plot_prediction_grid(
 ) -> None:
     """Prediction-vs-observed panels laid out as (gantry, HOT) then (gantry, GP).
 
-    With the default four columns each row holds two gantries, which is the
-    layout used in the report.
+    With the default four columns, each row holds two gantries.
     """
     panels = [(g, lane) for g in gantries for lane in ("HOT", "GP")]
     n_rows = int(np.ceil(len(panels) / n_cols))

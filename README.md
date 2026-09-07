@@ -30,7 +30,7 @@ src/hotlane/            importable package — all reusable logic
 scripts/                thin CLI entry points, numbered in run order
 data/                   inputs and derived tables (gitignored; see data/README.md)
 models/                 checkpoints and scalers (gitignored)
-outputs/figures/        report figures and generated plots (see outputs/README.md)
+outputs/figures/        generated plots (see outputs/figures/README.md)
 tests/                  smoke tests over the pure-python transforms
 ```
 
@@ -110,7 +110,7 @@ pipeline, exploratory analysis, modeling, and figure generation:
 | `21_predict_lstm.py` | Apply the trained models across the panel to generate speed predictions. |
 | `22_plot_predictions.py` | Compare predicted and observed speeds by gantry and lane. |
 | `23_plot_speed_difference.py` | Compare average HOT and GP speeds between two scenarios. |
-| `30_report_figures.py` | Regenerate the project summary figures under `outputs/figures/report_regenerated/`. |
+| `30_generate_summary_figures.py` | Generate an overview of the main analysis results under `outputs/figures/summary/`. |
 
 ## How the panel is built
 
